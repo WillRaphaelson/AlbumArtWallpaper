@@ -24,7 +24,7 @@ def run_mac():
         user = sp.currently_playing()
         temp = user
         try:
-            time.sleep(5)
+            time.sleep(1)
             user = sp.currently_playing()
             if temp["item"]["album"]["id"] == user["item"]["album"]["id"]:
                 continue
@@ -38,7 +38,7 @@ def run_mac():
                 full_local_filename = os.path.abspath(local_filename)
                 os.system(
                     f"osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"{full_local_filename}\"'")
-                time.sleep(5)
+                time.sleep(1)
         except spotipy.client.SpotifyException:
             sp = tokenGen()
             continue
@@ -50,14 +50,14 @@ def run_linux():
         user = sp.currently_playing()
         temp = user
         try:
-            time.sleep(5)
+            time.sleep(2)
             user = sp.currently_playing()
             if temp["item"]["album"]["id"] == user["item"]["album"]["id"]:
                 continue
             else:
                 link = user['item']['album']['images'][0]['url']
                 os.system("gsettings set org.gnome.desktop.background picture-uri " + link)
-                time.sleep(5)
+                time.sleep(2)
         except spotipy.client.SpotifyException:
             sp = tokenGen()
             continue
